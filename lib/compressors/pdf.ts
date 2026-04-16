@@ -19,5 +19,7 @@ export async function compressPdf(file: File): Promise<File> {
     addDefaultPage: false,
   });
 
-  return new File([compressedBytes], file.name, { type: "application/pdf" });
+  // Conversion explicite en Uint8Array natif pour compatibilité File/Blob
+  const blob = new Blob([new Uint8Array(compressedBytes)], { type: "application/pdf" });
+  return new File([blob], file.name, { type: "application/pdf" });
 }
