@@ -16,7 +16,7 @@ export default function MentionsLegalesPage() {
           <h2 className="font-display text-xl font-semibold mb-2">Éditeur du site</h2>
           <p>
             RikiZip<br />
-            [À compléter avec votre nom / raison sociale, adresse, email de contact, SIRET le cas échéant]
+            
           </p>
         </div>
 
