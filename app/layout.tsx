@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -15,6 +15,12 @@ const display = Space_Grotesk({
   variable: "--font-display",
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  themeColor: "#90df2c",
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rikizip.fr"),
@@ -33,6 +39,19 @@ export const metadata: Metadata = {
     "compression en ligne gratuit",
   ],
   authors: [{ name: "RikiZip" }],
+  applicationName: "RikiZip",
+  manifest: "/manifest.webmanifest",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   openGraph: {
     type: "website",
     locale: "fr_FR",
@@ -41,10 +60,31 @@ export const metadata: Metadata = {
     title: "RikiZip — Compresseur de fichiers en ligne gratuit",
     description:
       "Réduisez la taille de vos PDF, images et fichiers en quelques secondes. 100% gratuit, 100% privé.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "RikiZip — Vos fichiers, en mode rikiki",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "RikiZip — Compresseur de fichiers en ligne gratuit",
+    description:
+      "Réduisez la taille de vos PDF, images et fichiers. 100% gratuit, 100% privé.",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   alternates: {
     canonical: "/",
