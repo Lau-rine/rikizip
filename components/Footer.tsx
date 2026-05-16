@@ -1,43 +1,69 @@
 import Link from "next/link";
 
+const toolLinks = [
+  { href: "/compresser-pdf", label: "Compresser PDF" },
+  { href: "/compresser-image", label: "Compresser image" },
+  { href: "/convertir-heic-jpg", label: "Convertir HEIC en JPG" },
+];
+
+const seoLinks = [
+  { href: "/compresser-pdf-sans-upload", label: "PDF sans upload" },
+  { href: "/compresser-image-sans-upload", label: "Image sans upload" },
+  { href: "/reduire-taille-pdf-email", label: "PDF pour email" },
+  { href: "/compresser-photo-iphone", label: "Photo iPhone" },
+];
+
+const infoLinks = [
+  { href: "/comment-ca-marche", label: "Comment ça marche" },
+  { href: "/confidentialite-fichiers", label: "Confidentialité des fichiers" },
+];
+
 export default function Footer() {
   return (
-    <footer className="border-t border-neutral-200 mt-20">
-      <div className="container-custom py-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
-          <div>
-            <h3 className="font-display font-semibold text-neutral-900 mb-3">RikiZip</h3>
-            <p className="text-neutral-600">
-              Compresseur de fichiers en ligne, 100% navigateur.
-            </p>
-          </div>
-          <div>
-            <h4 className="font-semibold text-neutral-900 mb-3">Outils</h4>
-            <ul className="space-y-2 text-neutral-600">
-              <li><Link href="/compresser-pdf" className="hover:text-neutral-900">Compresser PDF</Link></li>
-              <li><Link href="/compresser-image" className="hover:text-neutral-900">Compresser image</Link></li>
-              <li><Link href="/convertir-heic-jpg" className="hover:text-neutral-900">Convertir HEIC en JPG</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-semibold text-neutral-900 mb-3">Info</h4>
-            <ul className="space-y-2 text-neutral-600">
-              <li><Link href="/#comment-ca-marche" className="hover:text-neutral-900">Comment ça marche</Link></li>
-              <li><Link href="/#confidentialite" className="hover:text-neutral-900">Confidentialité</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-semibold text-neutral-900 mb-3">Légal</h4>
-            <ul className="space-y-2 text-neutral-600">
-              <li><Link href="/mentions-legales" className="hover:text-neutral-900">Mentions légales</Link></li>
-              <li><Link href="/politique-confidentialite" className="hover:text-neutral-900">Politique de confidentialité</Link></li>
-            </ul>
-          </div>
+    <footer className="border-t border-neutral-200 bg-white">
+      <div className="container-custom py-12 grid gap-10 md:grid-cols-4">
+        <div>
+          <h2 className="font-display text-xl font-bold">RikiZip</h2>
+          <p className="mt-3 text-sm text-neutral-600">
+            Compresseur de fichiers gratuit, privé et 100% navigateur. Vos fichiers restent sur votre appareil.
+          </p>
         </div>
-        <div className="mt-10 pt-6 border-t border-neutral-200 text-xs text-neutral-500">
-          © {new Date().getFullYear()} RikiZip — Tous droits réservés.
+
+        <FooterColumn title="Outils" links={toolLinks} />
+        <FooterColumn title="Guides utiles" links={seoLinks} />
+        <FooterColumn title="Info" links={infoLinks} />
+
+        <div className="md:col-span-4 flex flex-col gap-3 border-t border-neutral-100 pt-6 text-sm text-neutral-500 md:flex-row md:items-center md:justify-between">
+          <p>© {new Date().getFullYear()} RikiZip — Tous droits réservés.</p>
+          <div className="flex flex-wrap gap-4">
+            <Link href="/mentions-legales" className="hover:text-neutral-900">Mentions légales</Link>
+            <Link href="/politique-confidentialite" className="hover:text-neutral-900">Politique de confidentialité</Link>
+          </div>
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterColumn({
+  title,
+  links,
+}: {
+  title: string;
+  links: { href: string; label: string }[];
+}) {
+  return (
+    <div>
+      <h3 className="font-semibold text-neutral-900">{title}</h3>
+      <ul className="mt-3 space-y-2 text-sm text-neutral-600">
+        {links.map((link) => (
+          <li key={link.href}>
+            <Link href={link.href} className="hover:text-neutral-900">
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
